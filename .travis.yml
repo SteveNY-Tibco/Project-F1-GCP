@@ -1,0 +1,23 @@
+sudo: required
+services:
+  - docker
+
+script:
+  - docker build -t bigoyang/F1_proxy:0.1.0 ./services/proxy
+  
+after_success:
+  - echo "$DOCKER_PASSWD" | docker login -u "$DOCKER_ID"
+  - docker push bigoyang/F1_proxy:0.1.0
+
+deploy:
+  provider: elasticbeanstalk
+  region: "us-east-1"
+  app: "Docker"
+  env: "Docker-env"
+  bucket_name: ""
+  bucket_path: ""
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key:
+    secure: "$AWS_SECRET_KEY"
