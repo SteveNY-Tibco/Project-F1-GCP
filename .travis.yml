@@ -12,10 +12,10 @@ before_install:
   - curl https://sdk.cloud.google.com | bash > /dev/null;
   - source $HOME/google-cloud-sdk/path.bash.inc
   - gcloud components update kubectl
-  - gcloud auth activate-service-acount --key-file service-account.json
-  - gcloud config set project [project id]
-  - gcloud config set cpmpute/zone [zone]
-  - gcloud container clusters get-credentials [cluster name]
+  - gcloud auth activate-service-acount --key-file project-f1-291216-f1a68f3ad40f.json
+  - gcloud config set project project-f1-291216
+  - gcloud config set cpmpute/zone us-central1-c	
+  - gcloud container clusters get-credentials cluster-f1
   - echo "$DOCKER_PASSWD" | docker login -u "$DOCKER_ID" --password-stdin
   - docker push bigoyang/F1_proxy:0.1.0
   
